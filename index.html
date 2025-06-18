@@ -328,7 +328,7 @@ h1 {
             <div id="start">
                 <br>
                 <br>
-                <h1 id="heading"></h1>
+                <h1 id="heading" style="color: blue;"></h1>
                 <p style="font-size: 18px; font-weight: 500; margin-top: 20px;">Choose a range or enter a custom one to start the quiz.</p>
                 <select id="sel" onchange="checkmanual()">
                     <option value="10">0-10</option>
@@ -380,6 +380,12 @@ h1 {
         </center>
     </body>
     <script>
+
+        addhs=localStorage.getItem("addhighscore")||0;
+        subhs=localStorage.getItem("subhighscore")||0;
+        mulhs=localStorage.getItem("mulhighscore")||0;
+        divhs=localStorage.getItem("divhighscore")||0;
+
         let corcount=0;
         let a,s,m,d;
         ad=document.getElementById('add');
@@ -387,24 +393,28 @@ h1 {
         mu=document.getElementById('mul');
         di=document.getElementById('div');
         function startadd(){
+            document.getElementById("highscore").innerHTML=addhs;
             document.getElementById('heading').innerHTML="ADDITION";
             document.getElementById('instructions').style.display='none';
             document.getElementById('start').style.display='block';
             document.getElementById('startbutton').onclick=()=>addition();
         }
         function startsub(){
+            document.getElementById("highscore").innerHTML=subhs;
             document.getElementById('heading').innerHTML="SUBRACTION"
             document.getElementById('instructions').style.display='none';
             document.getElementById('start').style.display='block';
             document.getElementById('startbutton').onclick=()=>subtraction();
         }
         function startmul(){
+            document.getElementById("highscore").innerHTML=mulhs;
             document.getElementById('heading').innerHTML="MULTIPLICATION"
             document.getElementById('instructions').style.display='none';
             document.getElementById('start').style.display='block';
             document.getElementById('startbutton').onclick=()=>multiplication();
         }
         function startdiv(){
+            document.getElementById("highscore").innerHTML=divhs;
             document.getElementById('heading').innerHTML="DIVISION"
             document.getElementById('instructions').style.display='none';
             document.getElementById('start').style.display='block';
@@ -652,6 +662,10 @@ h1 {
                 if(cor==res){
                     corcount+=1;
                     document.getElementById('score').innerHTML=corcount;
+                    if(corcount>addhs){
+                        localStorage.setItem("addhighscore",corcount);
+                        document.getElementById('highscore').innerHTML=corcount
+                    }
                     document.getElementById('oper').style.backgroundColor="lightgreen";
                     // document.getElementById('ans').style.color="green";
                     // document.getElementById('ans').innerHTML="Correct";
@@ -668,6 +682,10 @@ h1 {
                 if(cor==res){
                     corcount+=1;
                     document.getElementById('score').innerHTML=corcount;
+                    if(corcount>subhs){
+                        localStorage.setItem("subhighscore",corcount);
+                        document.getElementById('highscore').innerHTML=corcount
+                    }
                     document.getElementById('oper').style.backgroundColor="lightgreen";
                     // document.getElementById('ans').style.color="green";
                     // document.getElementById('ans').innerHTML="Correct";
@@ -683,6 +701,10 @@ h1 {
                 if(cor==res){
                     corcount+=1;
                     document.getElementById('score').innerHTML=corcount;
+                    if(corcount>mulhs){
+                        localStorage.setItem("mulhighscore",corcount);
+                        document.getElementById('highscore').innerHTML=corcount
+                    }
                     document.getElementById('oper').style.backgroundColor="lightgreen";
                     // document.getElementById('ans').style.color="green";
                     // document.getElementById('ans').innerHTML="Correct";
@@ -698,6 +720,10 @@ h1 {
                 if(cor==res){
                     corcount+=1;
                     document.getElementById('score').innerHTML=corcount;
+                    if(corcount>divhs){
+                        localStorage.setItem("divhighscore",corcount);
+                        document.getElementById('highscore').innerHTML=corcount
+                    }
                     document.getElementById('oper').style.backgroundColor="lightgreen";
                     // document.getElementById('ans').style.color="green";
                     // document.getElementById('ans').innerHTML="Correct";
